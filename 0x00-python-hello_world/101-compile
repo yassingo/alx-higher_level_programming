@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Check if the PYFILE environment variable is set
+if [ -z "$PYFILE" ]; then
+    echo "PYFILE environment variable is not set."
+    exit 1
+fi
+
+# Compile the Python script
+python3 -m py_compile "$PYFILE"
+
+# Rename the compiled file to PYFILEc
+compiled_file="${PYFILE}c"
+mv __pycache__/"$compiled_file" .
+
+# Remove the __pycache__ directory
+rmdir __pycache__
+
