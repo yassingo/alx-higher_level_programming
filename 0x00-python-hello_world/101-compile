@@ -28,7 +28,16 @@ if [ $? -eq 0 ]; then
     # Remove the __pycache__ directory
     rm -rf "__pycache__"
     
-    echo "Compilation completed."
+    # Run the compiled .pyc file and capture its output
+    output=$(python3 "$filename.pyc")
+    
+    # Check if the output contains the expected string
+    if [ "$output" == "Best School" ]; then
+        echo "Compilation completed successfully. Output is as expected."
+    else
+        echo "Error: Compilation completed, but the output is not as expected."
+        exit 1
+    fi
 else
     echo "Error: Compilation failed for $PYFILE."
     exit 1
