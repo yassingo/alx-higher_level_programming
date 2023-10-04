@@ -28,16 +28,18 @@ if [ $? -eq 0 ]; then
     # Remove the __pycache__ directory
     rm -rf "__pycache__"
     
-    # Run the compiled .pyc file and capture its output
-    output=$(python3 "$filename.pyc")
-    
-    # Check if the output contains the expected string
-    if [ "$output" == "Best School" ]; then
-        echo "Compilation completed successfully. Output is as expected."
+    # Check if the script produces the correct output for test cases
+    output1=$(python3 "$filename.pyc" "Chicago" 3)
+    if [ "$output1" == "Chcago" ]; then
+        echo "Output for case: removecharat(\"Chicago\", 3) is correct."
     else
-        echo "Error: Compilation completed, but the output is not as expected."
+        echo "Error: Output for case: removecharat(\"Chicago\", 3) is incorrect."
         exit 1
     fi
+    
+    # Add more test cases here as needed
+    
+    echo "Compilation completed successfully."
 else
     echo "Error: Compilation failed for $PYFILE."
     exit 1
