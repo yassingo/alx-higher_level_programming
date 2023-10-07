@@ -1,4 +1,4 @@
-#include <Python.h>
+#include <python3.10/Python.h>
 
 /**
  * print_python_list_info - Print information about a Python list
